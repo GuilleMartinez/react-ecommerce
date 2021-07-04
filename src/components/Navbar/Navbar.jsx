@@ -1,7 +1,7 @@
 import React from "react";
-import logo from "../../assets/logo.svg";
 import "./NavbarStyle.css";
 import CartWidget from "../CartWidget/CartWidget";
+import WebsiteLogo from "../WebsiteLogo/WebsiteLogo";
 
 const Navbar = () => {
   return (
@@ -11,16 +11,10 @@ const Navbar = () => {
       aria-describedby="main navigation"
     >
       <div className="navbar-brand">
-        
-          <figure className="logo-container">
-             <img src={logo} alt="Logo" className="navbar-logo" />
-             <figcaption>E-commerce</figcaption>
-          </figure>
-
+        <WebsiteLogo />
       </div>
 
       <div className="navbar-menu is-active">
-
         <ul className="navbar-start">
           <li className="navbar-item">Category 1</li>
           <li className="navbar-item">Category 2</li>
@@ -32,7 +26,6 @@ const Navbar = () => {
             <CartWidget />
           </li>
         </ul>
-
       </div>
     </nav>
   );
