@@ -2,14 +2,14 @@ import React from "react";
 import "../node_modules/bulma/css/bulma.min.css";
 import Navbar from "./components/Navbar/Navbar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
-
-//import ItemCount from "./components/ItemCount/ItemCount";
+import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
 
 function App() {
   return (
     <div className="App">
       <Navbar />
       <ItemListContainer />
+      <ItemDetailContainer />
     </div>
   );
 }

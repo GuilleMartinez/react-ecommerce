@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import ItemList from "./ItemList";
+import { fetchWithDetaly } from "../../scripts/fetchWithDelay";
 
 const ItemListContainer = () => {
 
@@ -10,11 +11,9 @@ const ItemListContainer = () => {
   });
 
   const requestData = () => {
-    setTimeout(function startFetch() {
-      fetch("/products.json")
-        .then((response) => response.json())
-        .then((json) => setData({ items: json, isLoading: false }));
-    }, 2000);
+    fetchWithDetaly("/products.json", 2000, function updateState(json) {
+      setData({items: json, isLoading: false})
+    });
   };
 
   useEffect(requestData, []);
