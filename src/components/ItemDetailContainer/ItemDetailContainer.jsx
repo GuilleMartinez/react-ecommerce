@@ -1,27 +1,38 @@
 import React, { useEffect, useState } from "react";
-import { fetchWithDetaly, getRandomIndex } from "../../scripts/fetchWithDelay";
+import { fetchWithDetaly } from "../../scripts/fetchWithDelay";
 import ItemDetail from "./ItemDetail";
 import ItemCountContainer from "../ItemCount/ItemCountContainer";
+import Loader from "../Loader/Loader";
+
+import { useParams } from "react-router";
 
 const ItemDetailContainer = () => {
 
-  const [product, setProduct] = useState(null);
+  const {id} = useParams();
+
+  const [productData, setProduct] = useState({
+    item: null,
+    isLoading: true
+  });
   
   const requestData = () => {
-    fetchWithDetaly("/products.json", 2000, function getProduct(json) { 
-        const randomIndex = getRandomIndex(json);
-        setProduct(json[randomIndex]);
+    fetchWithDetaly("/JSON/products.json", 1000, function getProduct(json) { 
+      const product = json.find(product => product.id === +id);
+      console.log(product);
+        setProduct({ item: product, isLoading: false});
     });
   };
 
-  useEffect(requestData, []);
+  useEffect(requestData, [id]);
 
   return (
-    <div className="container">
-        {product && <ItemDetail {...product}> 
-                        <ItemCountContainer stock={product.stock} initial={1}/>
-                    </ItemDetail>
-        }
+    <div className="section">
+      {productData.isLoading ? <Loader /> :
+        <ItemDetail {...productData.item} >
+            <ItemCountContainer stock={productData.item.stock} initial={1} />
+       </ItemDetail>
+       }
+          
     </div>
   );
 

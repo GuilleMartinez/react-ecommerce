@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Item = ({ id, title, price, imgURL}) => {
   return (
@@ -16,7 +17,9 @@ const Item = ({ id, title, price, imgURL}) => {
       </section>
 
       <footer className="card-footer is-flex-direction-column is-align-items-center p-2">
-        <button className="button" type="button" title="See details" value={id}>See details</button>
+        <Link to={`/product/${id}`}>
+          <button role="link" className="button" type="button" title="See details">See details</button>
+        </Link>
       </footer>
 
     </article>

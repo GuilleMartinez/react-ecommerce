@@ -4,6 +4,7 @@
     "title": "Product 1",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 120,
+    "category": 1,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
     "stock": 10
   },
@@ -12,6 +13,7 @@
     "title": "Product 2",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 150,
+    "category": 1,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
     "stock": 20
   },
@@ -20,6 +22,7 @@
     "title": "Product 3",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 350,
+    "category": 1,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
     "stock": 5
   },
@@ -28,6 +31,7 @@
     "title": "Product 4",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 450,
+    "category": 2,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
     "stock": 3
   },
@@ -36,6 +40,7 @@
     "title": "Product 5",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 680,
+    "category": 2,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
     "stock": 8
   },
@@ -44,6 +49,27 @@
     "title": "Product 6",
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 980,
+    "category": 2,
+    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "stock": 1
+  },
+
+  {
+    "id": 7,
+    "title": "Product 7",
+    "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+    "price": 920,
+    "category": 3,
+    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "stock": 1
+  },
+
+  {
+    "id": 8,
+    "title": "Product 8",
+    "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
+    "price": 320,
+    "category": 3,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
     "stock": 1
   }
