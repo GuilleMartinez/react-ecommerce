@@ -13,17 +13,14 @@ function App() {
         <Navbar />
 
         <Switch>
-          <Route exact path="/">
-            <ItemListContainer />
-          </Route>
-
-          <Route exact path="/category/:id">
+          <Route exact path={["/", "/category/:id"]}>
             <ItemListContainer />
           </Route>
 
           <Route exact path="/product/:id">
             <ItemDetailContainer />
           </Route>
+          
         </Switch>
       </BrowserRouter>
     </div>
