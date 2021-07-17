@@ -18,7 +18,7 @@ const Item = ({ id, title, price, imgURL}) => {
 
       <footer className="card-footer is-flex-direction-column is-align-items-center p-2">
         <Link to={`/product/${id}`}>
-          <button role="link" className="button" type="button" title="See details">See details</button>
+          <button role="link" className="button is-link is-light" type="button" title="See details">See details</button>
         </Link>
       </footer>
 

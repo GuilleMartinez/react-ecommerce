@@ -7,19 +7,17 @@ import Loader from "../Loader/Loader";
 import { useParams } from "react-router";
 
 const ItemDetailContainer = () => {
-
-  const {id} = useParams();
+  const { id } = useParams();
 
   const [productData, setProduct] = useState({
     item: null,
-    isLoading: true
+    isLoading: true,
   });
-  
+
   const requestData = () => {
-    fetchWithDetaly("/JSON/products.json", 1000, function getProduct(json) { 
-      const product = json.find(product => product.id === +id);
-      console.log(product);
-        setProduct({ item: product, isLoading: false});
+    fetchWithDetaly("/JSON/products.json", 700, function getProduct(json) {
+      const product = json.find((product) => product.id === +id);
+      setProduct({ item: product, isLoading: false });
     });
   };
 
@@ -27,15 +25,15 @@ const ItemDetailContainer = () => {
 
   return (
     <div className="section">
-      {productData.isLoading ? <Loader /> :
-        <ItemDetail {...productData.item} >
-            <ItemCountContainer stock={productData.item.stock} initial={1} />
-       </ItemDetail>
-       }
-          
+      {productData.isLoading ? (
+        <Loader />
+      ) : (
+        <ItemDetail {...productData.item}>
+          <ItemCountContainer stock={productData.item.stock} initial={1} />
+        </ItemDetail>
+      )}
     </div>
   );
-
 };
 
 export default ItemDetailContainer;

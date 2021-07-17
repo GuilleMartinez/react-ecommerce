@@ -17,7 +17,7 @@ const ItemDetail = ({imgURL, title, price, stock, description, children}) => {
         <p className="has-text-centered-mobile mb-3"><b className="is-size-4-mobile is-size-5-desktop"> ${price} </b></p>
         <div className="has-text-centered-mobile">
             <div className="mb-3 is-inline-flex">{children}</div>
-            <div><button type="button" title="Add to cart" className="button">Add to cart</button> </div>
+            <div><button type="button" title="Add to cart" className="button is-dark">Add to cart</button> </div>
         </div>
       </section>
 

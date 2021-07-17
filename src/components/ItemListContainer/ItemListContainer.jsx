@@ -5,7 +5,6 @@ import { fetchWithDetaly } from "../../scripts/fetchWithDelay";
 import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
-
   const { id } = useParams();
 
   const [data, setData] = useState({
@@ -14,9 +13,11 @@ const ItemListContainer = () => {
   });
 
   const requestData = () => {
-    fetchWithDetaly("/JSON/products.json", 1000, function updateState(json) {
-      const products = id ? json.filter(product => product.category === +id) : json;
-      setData({items: products, isLoading: false});
+    fetchWithDetaly("/JSON/products.json", 700, function updateState(json) {
+      const products = id
+        ? json.filter((product) => product.category === +id)
+        : json;
+      setData({ items: products, isLoading: false });
     });
   };
 

@@ -7,18 +7,18 @@ import CartWidget from "../CartWidget/CartWidget";
 import WebsiteLogo from "../WebsiteLogo/WebsiteLogo";
 import NavbarCategories from "./NavbarCategories";
 
-
-
-
 const Navbar = () => {
-
   const [categories, setCategories] = useState(null);
 
   const requestCategories = () => {
-    fetchWithDetaly("/JSON/categories.json", 0, function updateCategories(json) {
-      setCategories(json);
-      })
-  }
+    fetchWithDetaly(
+      "/JSON/categories.json",
+      0,
+      function updateCategories(json) {
+        setCategories(json);
+      }
+    );
+  };
 
   useEffect(requestCategories, []);
 
@@ -29,11 +29,13 @@ const Navbar = () => {
       aria-describedby="main navigation"
     >
       <div className="navbar-brand">
-       <Link to="/" > <WebsiteLogo /> </Link>
+        <Link to="/">
+          <WebsiteLogo />
+        </Link>
       </div>
 
-      <div className="navbar-menu is-active">
-       { categories && <NavbarCategories categories={categories} /> }
+      <div className="navbar-menu is-active has-background-grey-darker">
+        {categories && <NavbarCategories categories={categories} />}
 
         <ul className="navbar-end">
           <li className="navbar-item">

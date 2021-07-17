@@ -51,7 +51,7 @@
     "price": 980,
     "category": 2,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
-    "stock": 1
+    "stock": 3
   },
 
   {
@@ -61,7 +61,7 @@
     "price": 920,
     "category": 3,
     "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
-    "stock": 1
+    "stock": 2
   },
 
   {
