@@ -2,7 +2,7 @@
 
 ## Acerca de este proyecto
 
-Este proyecto de está conformado por los distintos desafíos entregables, con el objetivo de poner en práctica
+Este proyecto está conformado por los distintos desafíos entregables, con el objetivo de poner en práctica
 todos los conocimientos adquiridos a lo largo del curso.
 
 ## Herramientas utilizadas
@@ -29,5 +29,5 @@ Para ejecutar el proyecto y comenzar a utilizarlo
 Algunas de las funcionalidades que puede encontrar en este proyecto son:
 
 - En la página principal se mostrarán todos los productos existentes
-- Al seleccionar alguna categoría del navbar, se filtrarán los productos correspondientes.
+- Al seleccionar alguna categoría de la barra de navegación, se filtrarán los productos correspondientes.
 - Al hacer clic en el botón "see details" se mostrará mas información del producto que desee.
