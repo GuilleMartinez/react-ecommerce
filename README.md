@@ -2,7 +2,7 @@
 
 ## Acerca de este proyecto
 
-El objetivo de está conformado por los distintos desafíos entregables, con el objetivo de poner en práctica
+Este proyecto de está conformado por los distintos desafíos entregables, con el objetivo de poner en práctica
 todos los conocimientos adquiridos a lo largo del curso.
 
 ## Herramientas utilizadas
