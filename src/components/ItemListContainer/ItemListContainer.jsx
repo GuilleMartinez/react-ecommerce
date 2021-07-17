@@ -14,7 +14,7 @@ const ItemListContainer = () => {
   });
 
   const requestData = () => {
-    fetchWithDetaly("/JSON/products.json", 2000, function updateState(json) {
+    fetchWithDetaly("/JSON/products.json", 1000, function updateState(json) {
       const products = id ? json.filter(product => product.category === +id) : json;
       setData({items: products, isLoading: false});
     });
