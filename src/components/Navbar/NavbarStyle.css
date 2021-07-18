@@ -19,6 +19,12 @@
   align-items: center;
 }
 
+.navbar-item img {
+  max-height: initial;
+  width: 30px;
+  height: 30px;
+}
+
 .navbar-start .navbar-item:hover {
   background-color: rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease-in-out;

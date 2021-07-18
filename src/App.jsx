@@ -10,14 +10,14 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        
         <Navbar />
 
         <Switch>
           <Route exact path={["/", "/category/:id"]} component={ItemListContainer} />
-          <Route exact path="/product/:id" component={ItemDetailContainer}/>
+          <Route exact path="/product/:id" component={ItemDetailContainer} />
+          <Route exact path="/cart" />
         </Switch>
-
+        
       </BrowserRouter>
     </div>
   );

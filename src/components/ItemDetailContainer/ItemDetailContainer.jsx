@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { fetchWithDetaly } from "../../scripts/fetchWithDelay";
 import ItemDetail from "./ItemDetail";
-import ItemCountContainer from "../ItemCount/ItemCountContainer";
 import Loader from "../Loader/Loader";
 
 import { useParams } from "react-router";
 
 const ItemDetailContainer = () => {
+  
   const { id } = useParams();
 
-  const [productData, setProduct] = useState({
-    item: null,
+  const [product, setProduct] = useState({
+    attributes: null,
     isLoading: true,
   });
 
   const requestData = () => {
     fetchWithDetaly("/JSON/products.json", 700, function getProduct(json) {
       const product = json.find((product) => product.id === +id);
-      setProduct({ item: product, isLoading: false });
+      setProduct({ attributes: product, isLoading: false });
     });
   };
 
@@ -25,13 +25,7 @@ const ItemDetailContainer = () => {
 
   return (
     <div className="section">
-      {productData.isLoading ? (
-        <Loader />
-      ) : (
-        <ItemDetail {...productData.item}>
-          <ItemCountContainer stock={productData.item.stock} initial={1} />
-        </ItemDetail>
-      )}
+      {product.isLoading ? <Loader /> : <ItemDetail {...product.attributes} />}
     </div>
   );
 };

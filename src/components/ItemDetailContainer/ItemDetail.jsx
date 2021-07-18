@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import ItemCount from "../ItemCount/ItemCount";
+import { Link } from "react-router-dom";
 
-const ItemDetail = ({imgURL, title, price, stock, description, children}) => {
+
+const ItemDetail = ({ imgURL, title, price, stock, description }) => {
+
+  const [count, setCount] = useState(1);
+  const updateCount = (event) => setCount(count + +event.target.value);
+
+  const [hasFinish, setFinish] = useState(false);
+  const updateFinish = () => setFinish(!hasFinish);
+
   return (
     <article className="card is-flex is-flex-wrap-wrap is-justify-content-center is-align-items-center p-3">
 
@@ -16,9 +26,27 @@ const ItemDetail = ({imgURL, title, price, stock, description, children}) => {
         <p className="mb-3">{description}</p>
         <p className="has-text-centered-mobile mb-3"><b className="is-size-4-mobile is-size-5-desktop"> ${price} </b></p>
         <div className="has-text-centered-mobile">
-            <div className="mb-3 is-inline-flex">{children}</div>
-            <div><button type="button" title="Add to cart" className="button is-dark">Add to cart</button> </div>
+        
+          <div className="block mb-3">
+            {hasFinish
+              ? <Link to="/cart"><button type="button" role="link" className="button is-dark" title="Add to cart">Add to cart</button></Link>
+              : <ItemCount count={count} stock={stock} onAdd={updateCount} />
+            }
+          </div>
+
+          <div className="block">
+            <button
+              type="button" className={`button ${hasFinish ? "is-warning" : "is-success"} is-light`}
+              disabled={count <= 0}
+              onClick={updateFinish}
+              title={hasFinish ? "Update your order" : "Confirm your order"}
+            >
+              {hasFinish ? "Update your order" : "Confirm your order"}
+            </button>
+          </div>
+
         </div>
+        
       </section>
 
     </article>

@@ -1,8 +1,8 @@
-import React, { Fragment } from "react";
+import React from "react";
 
 const ItemCount = ({ stock, count, onAdd }) => {
   return (
-    <Fragment>
+    <div className="level is-inline-flex p-0 m-0">
       <button
         className="level-item button is-info is-normal m-0"
         type="button"
@@ -24,7 +24,7 @@ const ItemCount = ({ stock, count, onAdd }) => {
       >
         -
       </button>
-    </Fragment>
+    </div>
   );
 };
 
