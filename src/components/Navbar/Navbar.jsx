@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchWithDetaly } from "../../scripts/fetchWithDelay";
+import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 
 import "./NavbarStyle.css";
 import CartWidget from "../CartWidget/CartWidget";
@@ -11,23 +11,16 @@ const Navbar = () => {
   const [categories, setCategories] = useState(null);
 
   const requestCategories = () => {
-    fetchWithDetaly(
-      "/JSON/categories.json",
-      0,
-      function updateCategories(json) {
-        setCategories(json);
-      }
-    );
+    fetchWithDelay("/JSON/categories.json", 0, function updateCategories(json) {
+      setCategories(json);
+    });
   };
 
   useEffect(requestCategories, []);
 
   return (
-    <nav
-      className="navbar is-dark"
-      role="navigation"
-      aria-describedby="main navigation"
-    >
+    <nav className="navbar is-dark" role="navigation" aria-describedby="main navigation">
+      
       <div className="navbar-brand">
         <Link to="/">
           <WebsiteLogo />
@@ -39,10 +32,13 @@ const Navbar = () => {
 
         <ul className="navbar-end">
           <li className="navbar-item">
-            <CartWidget />
+            <Link to="/cart">
+              <CartWidget />
+            </Link>
           </li>
         </ul>
       </div>
+
     </nav>
   );
 };

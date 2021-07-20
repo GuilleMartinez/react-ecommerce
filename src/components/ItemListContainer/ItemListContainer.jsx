@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import ItemList from "./ItemList";
-import { fetchWithDetaly } from "../../scripts/fetchWithDelay";
+import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useParams } from "react-router-dom";
 
 const ItemListContainer = () => {
@@ -12,8 +12,8 @@ const ItemListContainer = () => {
     isLoading: true,
   });
 
-  const requestData = () => {
-    fetchWithDetaly("/JSON/products.json", 700, function updateState(json) {
+  const requestProducts = () => {
+    fetchWithDelay("/JSON/products.json", 700, function updateState(json) {
       const products = id
         ? json.filter((product) => product.category === +id)
         : json;
@@ -21,11 +21,14 @@ const ItemListContainer = () => {
     });
   };
 
-  useEffect(requestData, [id]);
+  useEffect(requestProducts, [id]);
 
   return (
     <div className="section">
-      {data.isLoading ? <Loader /> : <ItemList items={data.items} />}
+      {data.isLoading
+        ? <Loader />
+        : <ItemList items={data.items} />
+      }
     </div>
   );
 };

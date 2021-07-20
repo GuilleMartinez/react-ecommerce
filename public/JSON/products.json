@@ -5,7 +5,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 120,
     "category": 1,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 10
   },
   {
@@ -14,7 +14,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 150,
     "category": 1,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 20
   },
   {
@@ -23,7 +23,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 350,
     "category": 1,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 5
   },
   {
@@ -32,7 +32,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 450,
     "category": 2,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 3
   },
   {
@@ -41,7 +41,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 680,
     "category": 2,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 8
   },
   {
@@ -50,7 +50,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 980,
     "category": 2,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 3
   },
 
@@ -60,7 +60,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 920,
     "category": 3,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 2
   },
 
@@ -70,7 +70,7 @@
     "description": "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...",
     "price": 320,
     "category": 3,
-    "imgURL": "https://via.placeholder.com/250/363636/FFFFFF",
+    "imgURL": "https://via.placeholder.com/256/363636/FFFFFF",
     "stock": 1
   }
 ]
