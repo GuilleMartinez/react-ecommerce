@@ -7,7 +7,7 @@ const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
       <tr key={item.product.id}>
         <td>{item.product.title}</td>
         <td>{item.quantity}</td>
-        <td>{item.product.price}</td>
+        <td>${item.product.price}</td>
         <td>${item.quantity * item.product.price}</td>
         <td>
             <button className="button is-danger is-light mx-2" value={item.product.id} title="Remove order" aria-label="Remove order" onClick={deleteHandler}>❌</button>
