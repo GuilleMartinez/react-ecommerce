@@ -15,6 +15,11 @@ const CartContext = ({ children }) => {
     }
   }
 
+  function removeItem(id) {
+    const itemsFiltered = cart.filter(item => item.product.id !== id);
+    setCart(itemsFiltered);
+  }
+
   function updateItem(newItem) {
     const cartCopy = cart.slice();
     const index = cartCopy.findIndex(
@@ -28,6 +33,10 @@ const CartContext = ({ children }) => {
 
   function isInCart(id) {
     return cart.some((item) => item.product.id === id);
+  }
+
+  function hasItemsInCart() {
+    return cart.length > 0;
   }
 
   function clearCart() {
@@ -50,7 +59,9 @@ const CartContext = ({ children }) => {
       value={{
         cart,
         addItem,
+        removeItem,
         getItemsCount,
+        hasItemsInCart,
         calculateTotal,
         clearCart,
       }}
