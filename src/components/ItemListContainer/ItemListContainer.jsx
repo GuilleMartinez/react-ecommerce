@@ -32,7 +32,7 @@ const ItemListContainer = () => {
 
   useEffect(getAllProducts, []);
   useEffect(getProductsByCategory, [categoryID, setLoading]);
-  
+
   return (
     <div className="block">
       {isLoading ? (

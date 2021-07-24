@@ -12,7 +12,8 @@ const SearchBarContainer = ({items}) => {
   const submitEvent = (event) => {
     event.preventDefault();
     const searchedProduct = searchRef.current.value;
-    setProductSearched(searchedProduct);
+    const { id } = items.find(item => item.title === searchedProduct);
+    setProductSearched(id);
     setSubmit(true);
   };
 

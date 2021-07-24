@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchForm = ({ list, inputReference, submitHanlder }) => {
   return (
-    <form onSubmit={submitHanlder}>
+    <form onSubmit={submitHanlder} autoComplete="off">
       <div className="field is-grouped is-flex is-justify-content-center">
         <div className="control is-flex-grow-1">
           <input
@@ -18,9 +18,7 @@ const SearchForm = ({ list, inputReference, submitHanlder }) => {
           />
           <datalist id="products">
             {list.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.title}
-              </option>
+              <option key={item.id}>{item.title}</option>
             ))}
           </datalist>
         </div>
