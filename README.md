@@ -31,3 +31,4 @@ Algunas de las funcionalidades que puede encontrar en este proyecto son:
 - En la página principal se mostrarán todos los productos existentes
 - Al seleccionar alguna categoría de la barra de navegación, se filtrarán los productos correspondientes.
 - Al hacer clic en el botón "see details" se mostrará mas información del producto que desee.
+- Se agregan funciones para agregar, quitar o limpiar carrito de compras.

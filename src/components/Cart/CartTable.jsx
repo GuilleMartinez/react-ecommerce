@@ -1,7 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useCartContext } from "../../context/CartContext";
 
-const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
+const CartTable = () => {
+  const { cart, getItemsCount, calculateTotal, removeItem, clearCart } = useCartContext();
+  
+   const removeFromCart = (event) => {
+    const productID = +event.target.value;
+    removeItem(productID);
+  };
+
+
   const generateRow = (item) => {
     return (
       <tr key={item.product.id}>
@@ -13,20 +22,18 @@ const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
           <button
             className="button is-danger is-light mx-2"
             value={item.product.id}
-            title="Remove order"
-            aria-label="Remove order"
-            onClick={deleteHandler}
+            title="Delete order"
+            onClick={removeFromCart}
           >
-            ❌
+            Delete
           </button>
           <Link to={`/product/${item.product.id}`}>
             <button
               role="link"
               className="button is-warning is-light"
               title="Edit order"
-              aria-label="Edit order"
             >
-              📝
+              Edit
             </button>
           </Link>
         </td>
@@ -39,7 +46,7 @@ const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
       <div className="is-flex is-align-items-center is-justify-content-space-between mb-3">
         <p className="is-size-3 p-1 has-text-weight-bold">Your cart</p>
         <p className="is-size-4 p-1">
-          {`${itemsCount} ${itemsCount > 1 ? "items" : "item"}`}
+          {`${getItemsCount()} ${getItemsCount() > 1 ? "items" : "item"}`}
         </p>
       </div>
 
@@ -55,14 +62,23 @@ const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
             </tr>
           </thead>
 
-          <tbody>{items.map((item) => generateRow(item))}</tbody>
+          <tbody>{cart.map((item) => generateRow(item))}</tbody>
 
           <tfoot>
             <tr className="has-text-center is-size-5">
-              <td colSpan="5">Total: ${total}</td>
+              <td colSpan="5">Total: ${calculateTotal()}</td>
             </tr>
           </tfoot>
         </table>
+
+        <button
+          type="button"
+          className="button is-danger is-light"
+          title="Clear cart"
+          onClick={clearCart}
+        >
+          Clear cart
+        </button>
       </div>
     </div>
   );

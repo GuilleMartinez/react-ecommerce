@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, createContext, useContext, useEffect } from "react";
 
 const CartItemsContext = createContext();
 
@@ -7,52 +7,54 @@ const useCartContext = () => useContext(CartItemsContext);
 const CartContext = ({ children }) => {
   const [cart, setCart] = useState([]);
 
-  function addItem(newItem) {
+  const retrieveFromStorage = () => {
+    const savedCart = JSON.parse(sessionStorage.getItem("react-cart"));
+    if (savedCart && savedCart.length > 0) setCart(savedCart);
+  };
+
+  const updateCart = (newState) => {
+    setCart(newState);
+    sessionStorage.setItem("react-cart", JSON.stringify(newState));
+  };
+
+  useEffect(retrieveFromStorage, []);
+
+  const addItem = (newItem) => {
     if (isInCart(newItem.product.id)) {
       updateItem(newItem);
     } else {
-      setCart([...cart, newItem]);
+      updateCart([...cart, newItem]);
     }
-  }
+  };
 
-  function removeItem(id) {
-    const itemsFiltered = cart.filter(item => item.product.id !== id);
-    setCart(itemsFiltered);
-  }
+  const removeItem = (id) => {
+    const itemsFiltered = cart.filter((item) => item.product.id !== id);
+    updateCart(itemsFiltered);
+  };
 
-  function updateItem(newItem) {
+  const updateItem = (newItem) => {
     const cartCopy = cart.slice();
     const index = cartCopy.findIndex(
       (item) => item.product.id === newItem.product.id
     );
     if (cartCopy[index].quantity !== newItem.quantity) {
       cartCopy.splice(index, 1, newItem);
-      setCart([...cartCopy]);
+      updateCart(cartCopy);
     }
-  }
+  };
 
-  function isInCart(id) {
-    return cart.some((item) => item.product.id === id);
-  }
-
-  function hasItemsInCart() {
-    return cart.length > 0;
-  }
-
-  function clearCart() {
+  const clearCart = () => {
     setCart([]);
+    sessionStorage.removeItem("react-cart");
   }
 
-  function calculateTotal() {
-    return cart.reduce(
-      (current, item) => current + item.product.price * item.quantity,
-      0
-    );
-  }
+  const hasItemsInCart = () => cart.length > 0
 
-  function getItemsCount() {
-    return cart.length;
-  }
+  const isInCart = (id) => cart.some((item) => item.product.id === id);
+
+  const calculateTotal = () => cart.reduce((current, item) => current + item.product.price * item.quantity, 0);
+  
+  const getItemsCount = () =>  cart.length
 
   return (
     <CartItemsContext.Provider
