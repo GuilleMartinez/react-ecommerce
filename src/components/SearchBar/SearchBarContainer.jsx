@@ -12,7 +12,7 @@ const SearchBarContainer = ({items}) => {
   const submitEvent = (event) => {
     event.preventDefault();
     const searchedProduct = searchRef.current.value;
-    const { id } = items.find(item => item.title === searchedProduct);
+    const { id } = items.find(item => item.title.toLowerCase() === searchedProduct.toLowerCase() );
     setProductSearched(id);
     setSubmit(true);
   };
