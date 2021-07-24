@@ -6,8 +6,5 @@ function fetchWithDelay(url, delay, callback) {
     }, delay);
 }
 
-function getRandomIndex(array) {
-    return Math.floor(Math.random() * (array.length - 1)) + 1;
-}
 
-export { fetchWithDelay, getRandomIndex };
+export { fetchWithDelay };

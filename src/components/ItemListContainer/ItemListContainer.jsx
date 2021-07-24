@@ -1,34 +1,48 @@
 import React, { useEffect, useState } from "react";
 import Loader from "../Loader/Loader";
 import ItemList from "./ItemList";
+import SearchBarContainer from "../SearchBar/SearchBarContainer";
+
 import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useParams } from "react-router-dom";
+import { useGeneralDataContext } from "../../context/GeneralContext";
 
 const ItemListContainer = () => {
-  const { id } = useParams();
+  const { id: categoryID } = useParams();
 
-  const [data, setData] = useState({
-    items: [],
-    isLoading: true,
-  });
+  const [itemsFiltered, setItemsFiltered] = useState([]);
+  const [allItems, setAllItems] = useState([]);
+  const { isLoading, setLoading } = useGeneralDataContext();
 
-  const requestProducts = () => {
-    fetchWithDelay("/JSON/products.json", 700, function updateState(json) {
-      const products = id
-        ? json.filter((product) => product.category === +id)
-        : json;
-      setData({ items: products, isLoading: false });
+  const getAllProducts = () => {
+    fetchWithDelay("/JSON/products.json", 700, function getProducts(json) {
+      setAllItems(json);
     });
   };
 
-  useEffect(requestProducts, [id]);
+  const getProductsByCategory = () => {
+    setLoading(true);
+    fetchWithDelay("/JSON/products.json", 700, function getProducts(json) {
+      setItemsFiltered(
+        categoryID ? json.filter((item) => item.category === +categoryID) : json
+      );
+      setLoading(false);
+    });
+  };
 
+  useEffect(getAllProducts, []);
+  useEffect(getProductsByCategory, [categoryID, setLoading]);
+  
   return (
-    <div className="section">
-      {data.isLoading
-        ? <Loader />
-        : <ItemList items={data.items} />
-      }
+    <div className="block">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <SearchBarContainer items={allItems} />
+          <ItemList items={itemsFiltered} />
+        </>
+      )}
     </div>
   );
 };

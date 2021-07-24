@@ -10,10 +10,25 @@ const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
         <td>${item.product.price}</td>
         <td>${item.quantity * item.product.price}</td>
         <td>
-            <button className="button is-danger is-light mx-2" value={item.product.id} title="Remove order" aria-label="Remove order" onClick={deleteHandler}>❌</button>
-            <Link to={`/product/${item.product.id}`}>
-              <button role="link" className="button is-warning is-light" title="Edit order" aria-label="Edit order">📝</button>
-            </Link>
+          <button
+            className="button is-danger is-light mx-2"
+            value={item.product.id}
+            title="Remove order"
+            aria-label="Remove order"
+            onClick={deleteHandler}
+          >
+            ❌
+          </button>
+          <Link to={`/product/${item.product.id}`}>
+            <button
+              role="link"
+              className="button is-warning is-light"
+              title="Edit order"
+              aria-label="Edit order"
+            >
+              📝
+            </button>
+          </Link>
         </td>
       </tr>
     );
@@ -29,26 +44,26 @@ const CartTable = ({ items, itemsCount, total, deleteHandler }) => {
       </div>
 
       <div className="table-container">
-      <table className="table is-fullwidth has-text-centered is-hoverable is-striped">
-        <thead>
-          <tr>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Subtotal</th>
-            <th></th>
-          </tr>
-        </thead>
+        <table className="table is-fullwidth has-text-centered is-hoverable is-striped">
+          <thead>
+            <tr>
+              <th scope="col">Product</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Price</th>
+              <th scope="col">Subtotal</th>
+              <th></th>
+            </tr>
+          </thead>
 
-        <tbody>{items.map((item) => generateRow(item))}</tbody>
+          <tbody>{items.map((item) => generateRow(item))}</tbody>
 
-        <tfoot>
-          <tr className="has-text-center is-size-5">
-            <td colSpan="5">Total: ${total}</td>
-          </tr>
-        </tfoot>
+          <tfoot>
+            <tr className="has-text-center is-size-5">
+              <td colSpan="5">Total: ${total}</td>
+            </tr>
+          </tfoot>
         </table>
-        </div>
+      </div>
     </div>
   );
 };

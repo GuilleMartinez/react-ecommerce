@@ -28,7 +28,10 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-menu is-active has-background-grey-darker">
-        {categories && <NavbarCategories categories={categories} />}
+        
+        <ul className="navbar-start">
+          {categories && <NavbarCategories categories={categories} />}
+        </ul>
 
         <ul className="navbar-end">
           <li className="navbar-item">
