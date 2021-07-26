@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import SearchForm from "./SearchForm";
 
 
-const SearchBarContainer = ({items}) => {
+const SearchBarContainer = ({ items }) => {
   const [productSearched, setProductSearched] = useState(null);
 
   const [hasSubmitted, setSubmit] = useState(false);
@@ -12,9 +12,11 @@ const SearchBarContainer = ({items}) => {
   const submitEvent = (event) => {
     event.preventDefault();
     const searchedProduct = searchRef.current.value;
-    const { id } = items.find(item => item.title.toLowerCase() === searchedProduct.toLowerCase() );
-    setProductSearched(id);
-    setSubmit(true);
+    const { id } = items.find(item => item.title.toLowerCase() === searchedProduct.toLowerCase()) || false;
+    if (id) {
+      setProductSearched(id);
+      setSubmit(true);
+    }
   };
 
   return (
