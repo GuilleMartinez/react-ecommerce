@@ -5,7 +5,7 @@ import SearchBarContainer from "../SearchBar/SearchBarContainer";
 import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useParams } from "react-router-dom";
 import { useGeneralDataContext } from "../../context/GeneralContext";
-import WithLoader from "../WithLoader/WithLoader";
+import WithLoader from "../HOC/WithLoader";
 
 const ItemListContainer = WithLoader(({ visibility }) => {
   const { id: categoryID } = useParams();

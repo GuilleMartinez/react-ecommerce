@@ -4,8 +4,7 @@ import ItemDetail from "./ItemDetail";
 import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useGeneralDataContext } from "../../context/GeneralContext";
 import { useParams } from "react-router";
-
-import WithLoader from "../WithLoader/WithLoader";
+import WithLoader from "../HOC/WithLoader";
 
 const ItemDetailContainer = WithLoader(({ visibility }) => {
   const { id: productId } = useParams();

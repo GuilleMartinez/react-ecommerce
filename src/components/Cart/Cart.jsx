@@ -6,7 +6,7 @@ import CartTable from "./CartTable";
 import CartEmpty from "./CartEmpty";
 import { useCartContext } from "../../context/CartContext";
 import { useGeneralDataContext } from "../../context/GeneralContext";
-import WithLoader from "../WithLoader/WithLoader";
+import WithLoader from "../HOC/WithLoader";
 
 const Cart = WithLoader(({ visibility }) => {
   const { showLoader, hideLoader } = useGeneralDataContext();

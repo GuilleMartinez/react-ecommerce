@@ -1,7 +1,8 @@
 import React, { createRef, useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useGeneralDataContext } from "../../context/GeneralContext";
-import WithNotification from "../WithLoader/WithNotification";
+import WithNotification from "../HOC/WithNotification";
+
 import SearchForm from "./SearchForm";
 
 const SearchBarContainer = WithNotification(({ items }) => {
@@ -28,14 +29,14 @@ const SearchBarContainer = WithNotification(({ items }) => {
     else
       createError(
         "Product not found",
-        "The product you searched is not available",
+        "The product you searched is not available. Please try again",
         "info"
       );
   };
 
   return (
     <div className="section has-text-centered">
-      <h2 className="subtitle mb-3">What're you looking for?</h2>
+      <h2 className="title mb-3">What're you looking for?</h2>
       {hasSubmitted ? (
         <Redirect to={`/product/${productSearched}`} />
       ) : (
