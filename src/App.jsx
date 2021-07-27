@@ -9,6 +9,7 @@ import { Route, Switch, BrowserRouter } from "react-router-dom";
 import CartContext from "./context/CartContext";
 import GeneralContext from "./context/GeneralContext";
 
+
 function App() {
   return (
     <div className="App">
@@ -17,15 +18,12 @@ function App() {
           <GeneralContext>
             <Navbar />
             <Switch>
-
               <Route exact path={["/", "/category/:id"]} component={ItemListContainer} />
               <Route exact path="/product/:id" component={ItemDetailContainer} />
               <Route exact path="/cart" component={Cart} />
-
             </Switch>
           </GeneralContext>
         </CartContext>
-
       </BrowserRouter>
     </div>
   );

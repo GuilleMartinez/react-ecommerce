@@ -2,7 +2,7 @@ import React from "react";
 
 const SearchForm = ({ list, inputReference, submitHanlder }) => {
   return (
-    <form onSubmit={submitHanlder} autoComplete="off">
+    <form onSubmit={submitHanlder} autoComplete="off" className="mb-3">
       <div className="field is-grouped is-flex is-justify-content-center">
         <div className="control is-flex-grow-1">
           <input

@@ -1,35 +1,36 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
-import Loader from "../Loader/Loader";
 
 import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useGeneralDataContext } from "../../context/GeneralContext";
 import { useParams } from "react-router";
 
-const ItemDetailContainer = () => {
-  
+import WithLoader from "../WithLoader/WithLoader";
+
+const ItemDetailContainer = WithLoader(({ visibility }) => {
   const { id: productId } = useParams();
 
   const [product, setProduct] = useState({ attributes: {} });
-  const { isLoading, setLoading } = useGeneralDataContext();
+
+  const { showLoader, hideLoader } = useGeneralDataContext();
 
   const getProductById = () => {
-    setLoading(true);
+    showLoader();
     fetchWithDelay("/JSON/products.json", 700, function getProducts(json) {
       setProduct({
         attributes: json.find((item) => item.id === +productId),
       });
-      setLoading(false);
+      hideLoader();
     });
   };
 
-  useEffect(getProductById, [productId, setLoading]);
+  useEffect(getProductById, [productId, showLoader, hideLoader]);
 
   return (
-    <div className="section">
-      {isLoading ? <Loader /> : <ItemDetail item={product.attributes} />}
+    <div className={`section ${visibility}`}>
+      <ItemDetail item={product.attributes} />
     </div>
   );
-};
+});
 
 export default ItemDetailContainer;

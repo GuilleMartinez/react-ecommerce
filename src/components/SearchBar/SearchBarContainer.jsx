@@ -1,22 +1,36 @@
 import React, { createRef, useState } from "react";
 import { Redirect } from "react-router-dom";
+import { useGeneralDataContext } from "../../context/GeneralContext";
+import WithNotification from "../WithLoader/WithNotification";
 import SearchForm from "./SearchForm";
 
-
-const SearchBarContainer = ({ items }) => {
+const SearchBarContainer = WithNotification(({ items }) => {
   const [productSearched, setProductSearched] = useState(null);
 
   const [hasSubmitted, setSubmit] = useState(false);
   const searchRef = createRef();
 
-  const submitEvent = (event) => {
+  const { createError } = useGeneralDataContext();
+
+  const executeForm = (id) => {
+    setProductSearched(id);
+    setSubmit(true);
+  };
+
+  const onSubmitHanlder = (event) => {
     event.preventDefault();
     const searchedProduct = searchRef.current.value;
-    const { id } = items.find(item => item.title.toLowerCase() === searchedProduct.toLowerCase()) || false;
-    if (id) {
-      setProductSearched(id);
-      setSubmit(true);
-    }
+    const { id } =
+      items.find(
+        (item) => item.title.toLowerCase() === searchedProduct.toLowerCase()
+      ) || false;
+    if (id) executeForm(id);
+    else
+      createError(
+        "Product not found",
+        "The product you searched is not available",
+        "info"
+      );
   };
 
   return (
@@ -27,12 +41,12 @@ const SearchBarContainer = ({ items }) => {
       ) : (
         <SearchForm
           list={items}
-          submitHanlder={submitEvent}
+          submitHanlder={onSubmitHanlder}
           inputReference={searchRef}
         />
       )}
     </div>
   );
-};
+});
 
 export default SearchBarContainer;
