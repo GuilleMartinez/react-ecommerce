@@ -6,7 +6,7 @@ const CartTable = () => {
   const { cart, getItemsCount, calculateTotal, removeItem, clearCart } = useCartContext();
   
    const removeFromCart = (event) => {
-    const productID = +event.target.value;
+    const productID = event.target.value;
     removeItem(productID);
   };
 
@@ -27,7 +27,7 @@ const CartTable = () => {
           >
             Delete
           </button>
-          <Link to={`/product/${item.product.id}`}>
+          <Link to={`/product/${item.product.title}`}>
             <button
               role="link"
               className="button is-warning is-light"

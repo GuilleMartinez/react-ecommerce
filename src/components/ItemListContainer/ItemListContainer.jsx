@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
 import SearchBarContainer from "../SearchBar/SearchBarContainer";
 
-import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useParams } from "react-router-dom";
 import { useGeneralDataContext } from "../../context/GeneralContext";
 import WithLoader from "../HOC/WithLoader";
+import getFromFirebase from "../../scripts/firebaseConfig";
 
 const ItemListContainer = WithLoader(({ visibility }) => {
-  const { id: categoryID } = useParams();
+  const { categoryName } = useParams();
 
   const [itemsFiltered, setItemsFiltered] = useState([]);
   const [allItems, setAllItems] = useState([]);
@@ -16,23 +16,26 @@ const ItemListContainer = WithLoader(({ visibility }) => {
   const { showLoader, hideLoader } = useGeneralDataContext();
 
   const getAllProducts = () => {
-    fetchWithDelay("/JSON/products.json", 700, function getProducts(json) {
-      setAllItems(json);
-    });
+    const onResponse = (response) => setAllItems(response);
+    const onFinally = () => console.log("Search input loaded");
+    getFromFirebase("products", onResponse, onFinally);
   };
 
   const getProductsByCategory = () => {
-    showLoader();
-    fetchWithDelay("/JSON/products.json", 700, function getProducts(json) {
-      setItemsFiltered(
-        categoryID ? json.filter((item) => item.category === +categoryID) : json
-      );
+    const onResponse = (response) => setItemsFiltered(response);
+    const onFinally = () => {
+      console.log("Product list loaded");
       hideLoader();
-    });
+    };
+    const applyFilter = Boolean(categoryName);
+    const filter = { attr: "category", compare: "==", value: categoryName };
+
+    showLoader();
+    getFromFirebase("products", onResponse, onFinally, applyFilter, filter);
   };
 
   useEffect(getAllProducts, []);
-  useEffect(getProductsByCategory, [categoryID, showLoader, hideLoader]);
+  useEffect(getProductsByCategory, [categoryName, showLoader, hideLoader]);
 
   return (
     <div className={`container ${visibility}`}>

@@ -6,7 +6,7 @@ const NavbarCategories = ({ categories }) => {
     <>
       {categories.map((category) => (
         <li key={category.id} className="navbar-item">
-          <NavLink to={`/category/${category.id}`} className="has-text-white">
+          <NavLink to={`/category/${category.title}`} className="has-text-white">
             {category.title}
           </NavLink>
         </li>

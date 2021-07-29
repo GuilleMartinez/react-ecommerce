@@ -1,29 +1,35 @@
 import React, { useEffect, useState } from "react";
 import ItemDetail from "./ItemDetail";
 
-import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 import { useGeneralDataContext } from "../../context/GeneralContext";
 import { useParams } from "react-router";
 import WithLoader from "../HOC/WithLoader";
+import getFromFirebase from "../../scripts/firebaseConfig";
 
 const ItemDetailContainer = WithLoader(({ visibility }) => {
-  const { id: productId } = useParams();
+
+  const { productName } = useParams();
 
   const [product, setProduct] = useState({ attributes: {} });
 
   const { showLoader, hideLoader } = useGeneralDataContext();
 
   const getProductById = () => {
-    showLoader();
-    fetchWithDelay("/JSON/products.json", 700, function getProducts(json) {
-      setProduct({
-        attributes: json.find((item) => item.id === +productId),
-      });
+    const onResponse = (response) => {
+      const [productFiltered] = response;
+      setProduct({ attributes: productFiltered });
+    };
+
+    const onFinally = () => {
+     console.log("Filtered Product Loaded");
       hideLoader();
-    });
+    };
+
+    showLoader();
+    getFromFirebase("products", onResponse, onFinally, true, { attr: "title", compare: "==", value: productName });
   };
 
-  useEffect(getProductById, [productId, showLoader, hideLoader]);
+  useEffect(getProductById, [productName, showLoader, hideLoader]);
 
   return (
     <div className={`section ${visibility}`}>

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { fetchWithDelay } from "../../scripts/fetchWithDelay";
 
 import "./NavbarStyle.css";
 import CartWidget from "../CartWidget/CartWidget";
 import WebsiteLogo from "../WebsiteLogo/WebsiteLogo";
 import NavbarCategories from "./NavbarCategories";
 
+import getFromFirebase from "../../scripts/firebaseConfig";
+
 const Navbar = () => {
   const [categories, setCategories] = useState(null);
 
   const requestCategories = () => {
-    fetchWithDelay("/JSON/categories.json", 0, function updateCategories(json) {
-      setCategories(json);
-    });
+    const onResponse = response => setCategories(response);
+    const onFinally = console.log("Categories Loaded");
+    getFromFirebase("categories", onResponse, onFinally)
   };
 
   useEffect(requestCategories, []);

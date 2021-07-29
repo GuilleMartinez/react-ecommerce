@@ -21,11 +21,11 @@ const SearchBarContainer = WithNotification(({ items }) => {
   const onSubmitHanlder = (event) => {
     event.preventDefault();
     const searchedProduct = searchRef.current.value;
-    const { id } =
+    const { title } =
       items.find(
         (item) => item.title.toLowerCase() === searchedProduct.toLowerCase()
       ) || false;
-    if (id) executeForm(id);
+    if (title) executeForm(title);
     else
       createError(
         "Product not found",
