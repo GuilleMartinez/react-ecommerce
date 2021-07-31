@@ -1,9 +1,8 @@
 import React, { createRef, useState } from "react";
+import WithNotification from "../HOC/WithNotification";
+import SearchForm from "./SearchForm";
 import { Redirect } from "react-router-dom";
 import { useGeneralDataContext } from "../../context/GeneralContext";
-import WithNotification from "../HOC/WithNotification";
-
-import SearchForm from "./SearchForm";
 
 const SearchBarContainer = WithNotification(({ items }) => {
   const [productSearched, setProductSearched] = useState(null);
@@ -21,11 +20,11 @@ const SearchBarContainer = WithNotification(({ items }) => {
   const onSubmitHanlder = (event) => {
     event.preventDefault();
     const searchedProduct = searchRef.current.value;
-    const { title } =
+    const { id } =
       items.find(
         (item) => item.title.toLowerCase() === searchedProduct.toLowerCase()
       ) || false;
-    if (title) executeForm(title);
+    if (id) executeForm(id);
     else
       createError(
         "Product not found",

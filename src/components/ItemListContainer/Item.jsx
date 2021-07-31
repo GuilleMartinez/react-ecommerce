@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Item = ({ title, price, imgURL }) => {
+const Item = ({ id, title, price, imgURL }) => {
   return (
     <article className="card has-text-centered">
       <header className="card-header is-justify-content-center">
@@ -20,7 +20,7 @@ const Item = ({ title, price, imgURL }) => {
       </section>
 
       <footer className="card-footer is-flex-direction-column is-align-items-center p-2">
-        <Link to={`/product/${title}`}>
+        <Link to={`/product/${id}`}>
           <button
             role="link"
             className="button is-link is-light"

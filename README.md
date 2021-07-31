@@ -9,8 +9,9 @@ todos los conocimientos adquiridos a lo largo del curso.
 
 Para la elaboración de este proyecto se utilizaron las siguientes herramientas:
 
-- Bulma CSS
-- React Router Dom
+- Bulma CSS (estilos y diseño responsive).
+- React Router Dom (navegación).
+- Firebase (alojamiento de datos).
 
 ## Instalación
 
@@ -29,6 +30,12 @@ Para ejecutar el proyecto y comenzar a utilizarlo
 Algunas de las funcionalidades que puede encontrar en este proyecto son:
 
 - En la página principal se mostrarán todos los productos existentes
+- Puede buscar el producto que desee utilizando el buscador.
 - Al seleccionar alguna categoría de la barra de navegación, se filtrarán los productos correspondientes.
 - Al hacer clic en el botón "see details" se mostrará mas información del producto que desee.
-- Se agregan funciones para agregar, quitar o limpiar carrito de compras.
+- Dentro del carrito de compras podrá encontrar la siguiente información:
+  - Cantidad de productos
+  - Producto, cantidad, precio unitario y subtotal.
+  - Total a pagar.
+
+Adiconalmente, permite borrar el producto deseado o vaciar el carrito completamente.

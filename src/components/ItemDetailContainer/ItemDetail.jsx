@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
-
 import { useCartContext } from "../../context/CartContext";
 
 const ItemDetail = ({ item }) => {
@@ -60,7 +59,9 @@ const ItemDetail = ({ item }) => {
           <div className="block">
             <button
               type="button"
-              className={`button ${hasFinish ? "is-warning" : "is-success"} is-light`}
+              className={`button ${
+                hasFinish ? "is-warning" : "is-success"
+              } is-light`}
               disabled={count <= 0}
               onClick={updateFinish}
               title={hasFinish ? "Update your order" : "Confirm your order"}

@@ -1,27 +1,28 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
-import "./NavbarStyle.css";
 import CartWidget from "../CartWidget/CartWidget";
 import WebsiteLogo from "../WebsiteLogo/WebsiteLogo";
 import NavbarCategories from "./NavbarCategories";
-
-import getFromFirebase from "../../scripts/firebaseConfig";
+import { requestCategories } from "../../scripts/firebaseConfig";
+import "./NavbarStyle.css";
 
 const Navbar = () => {
   const [categories, setCategories] = useState(null);
 
-  const requestCategories = () => {
-    const onResponse = response => setCategories(response);
+  const getCategories = () => {
+    const onResponse = (response) => setCategories(response);
     const onFinally = console.log("Categories Loaded");
-    getFromFirebase("categories", onResponse, onFinally)
+    requestCategories(onResponse, onFinally);
   };
 
-  useEffect(requestCategories, []);
+  useEffect(getCategories, []);
 
   return (
-    <nav className="navbar is-dark" role="navigation" aria-describedby="main navigation">
-      
+    <nav
+      className="navbar is-dark"
+      role="navigation"
+      aria-describedby="main navigation"
+    >
       <div className="navbar-brand">
         <Link to="/">
           <WebsiteLogo />
@@ -29,7 +30,6 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-menu is-active has-background-grey-darker">
-        
         <ul className="navbar-start">
           {categories && <NavbarCategories categories={categories} />}
         </ul>
@@ -42,7 +42,6 @@ const Navbar = () => {
           </li>
         </ul>
       </div>
-
     </nav>
   );
 };

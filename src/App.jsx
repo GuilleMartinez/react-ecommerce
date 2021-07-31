@@ -19,7 +19,7 @@ function App() {
             <Navbar />
             <Switch>
               <Route exact path={["/", "/category/:categoryName"]} component={ItemListContainer} />
-              <Route exact path="/product/:productName" component={ItemDetailContainer} />
+              <Route exact path="/product/:productID" component={ItemDetailContainer} />
               <Route exact path="/cart" component={Cart} />
             </Switch>
           </GeneralContext>

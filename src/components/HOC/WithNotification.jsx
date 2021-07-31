@@ -1,6 +1,6 @@
 import React from "react";
-import { useGeneralDataContext } from "../../context/GeneralContext";
 import Notification from "../Notification/Notification";
+import { useGeneralDataContext } from "../../context/GeneralContext";
 
 const WithNotification = (Component) => {
   return function ComponentWithLoader(props) {

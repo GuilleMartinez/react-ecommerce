@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-
-import "./Cart.css";
-
+import WithLoader from "../HOC/WithLoader";
 import CartTable from "./CartTable";
 import CartEmpty from "./CartEmpty";
 import { useCartContext } from "../../context/CartContext";
 import { useGeneralDataContext } from "../../context/GeneralContext";
-import WithLoader from "../HOC/WithLoader";
+import "./Cart.css";
 
 const Cart = WithLoader(({ visibility }) => {
   const { showLoader, hideLoader } = useGeneralDataContext();

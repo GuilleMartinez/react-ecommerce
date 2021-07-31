@@ -1,7 +1,6 @@
 import firebase from "firebase/app";
 import "firebase/firestore";
 
-
 const firebaseConfig = {
     apiKey: "AIzaSyCZVzvjxShnvfFudb0gzFjGYiJlmsEnJcE",
     authDomain: "react-ecommerce-9f16c.firebaseapp.com",
@@ -14,28 +13,55 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = firebase.initializeApp(firebaseConfig);
 
-const createDocsArray = (docs) =>
-    docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+const createDocsArray = (docs) => docs.map((doc) => createFirebaseObject(doc));
 
-function getFromFirebase(
-    collectionName,
+const createFirebaseObject = (doc) => ({ id: doc.id, ...doc.data() });
+
+function requestProducts(
     onResponse = () => { },
     onFinally = () => { },
     hasFilter = false,
-    filterParameter = { attr: "", compare: "", value: "" }
+    categoryName = ""
 ) {
     const db = firebase.firestore(app);
-    const itemsCollection = hasFilter
-        ? db
-            .collection(collectionName)
-            .where(filterParameter.attr, filterParameter.compare, filterParameter.value)
-        : db.collection(collectionName);
 
-    itemsCollection
+    const productsCollection = hasFilter
+        ? db.collection("products").where("category", "==", categoryName)
+        : db.collection("products");
+
+    productsCollection
         .get()
         .then((response) => onResponse(createDocsArray(response.docs)))
         .catch((error) => console.log(error))
         .finally(onFinally);
 }
 
-export default getFromFirebase;
+function requestCategories(onResponse = () => { }, onFinally = () => { }) {
+    const db = firebase.firestore(app);
+
+    const categoriesCollection = db.collection("categories");
+
+    categoriesCollection
+        .get()
+        .then((response) => onResponse(createDocsArray(response.docs)))
+        .catch((error) => console.log(error))
+        .finally(onFinally);
+}
+
+function requestProduct(
+    onResponse = () => { },
+    onFinally = () => { },
+    productID = ""
+) {
+    const db = firebase.firestore(app);
+
+    const productSearched = db.collection("products").doc(productID);
+
+    productSearched
+        .get()
+        .then((response) => onResponse(createFirebaseObject(response)))
+        .catch((error) => console.log(error))
+        .finally(onFinally);
+}
+
+export { requestCategories, requestProducts, requestProduct };
