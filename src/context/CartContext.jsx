@@ -17,8 +17,6 @@ const CartContext = ({ children }) => {
     sessionStorage.setItem("react-cart", JSON.stringify(newState));
   };
 
-  useEffect(retrieveFromStorage, []);
-
   const addItem = (newItem) => {
     if (isInCart(newItem.product.id)) {
       updateItem(newItem);
@@ -53,8 +51,10 @@ const CartContext = ({ children }) => {
   const isInCart = (id) => cart.some((item) => item.product.id === id);
 
   const calculateTotal = () => cart.reduce((current, item) => current + item.product.price * item.quantity, 0);
-  
+
   const getItemsCount = () =>  cart.length
+
+  useEffect(retrieveFromStorage, []);
 
   return (
     <CartItemsContext.Provider

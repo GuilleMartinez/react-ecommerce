@@ -14,8 +14,11 @@ const GeneralContext = ({ children }) => {
   });
 
   const showLoader = useCallback(() => setLoading(true), []);
+
   const hideLoader = useCallback(() => setLoading(false), []);
+
   const createError = (title, description, type) => setError({ title, description, type, isActive: true });
+  
   const removeError = () => setError({ ...error, isActive: false });
 
   return (

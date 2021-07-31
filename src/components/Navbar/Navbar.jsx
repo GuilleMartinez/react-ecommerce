@@ -11,8 +11,7 @@ const Navbar = () => {
 
   const getCategories = () => {
     const onResponse = (response) => setCategories(response);
-    const onFinally = console.log("Categories Loaded");
-    requestCategories(onResponse, onFinally);
+    requestCategories(onResponse);
   };
 
   useEffect(getCategories, []);
