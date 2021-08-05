@@ -8,6 +8,9 @@ import "./NavbarStyle.css";
 
 const Navbar = () => {
   const [categories, setCategories] = useState(null);
+  const [navbarActive, setNavbarActive] = useState(false);
+
+  const toggleNavbar = () => setNavbarActive(!navbarActive);
 
   const getCategories = () => {
     const onResponse = (response) => setCategories(response);
@@ -22,13 +25,28 @@ const Navbar = () => {
       role="navigation"
       aria-describedby="main navigation"
     >
-      <div className="navbar-brand">
+      <div className="navbar-brand is-align-items-center">
         <Link to="/">
           <WebsiteLogo />
         </Link>
+
+        <button
+          className={`navbar-burger ${navbarActive ? "is-active" : ""}`}
+          aria-label="menu"
+          aria-expanded="false"
+          onClick={toggleNavbar}
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </button>
       </div>
 
-      <div className="navbar-menu is-active has-background-grey-darker">
+      <div
+        className={`navbar-menu ${
+          navbarActive ? "is-active" : ""
+        } has-background-grey-darker`}
+      >
         <ul className="navbar-start">
           {categories && <NavbarCategories categories={categories} />}
         </ul>

@@ -10,7 +10,7 @@ const SearchBarContainer = WithNotification(({ items }) => {
   const [hasSubmitted, setSubmit] = useState(false);
   const searchRef = createRef();
 
-  const { createError } = useGeneralDataContext();
+  const { createNotification } = useGeneralDataContext();
 
   const executeForm = (id) => {
     setProductSearched(id);
@@ -26,7 +26,7 @@ const SearchBarContainer = WithNotification(({ items }) => {
       ) || false;
     if (id) executeForm(id);
     else
-      createError(
+      createNotification(
         "Product not found",
         "The product you searched is not available. Please try again",
         "info"

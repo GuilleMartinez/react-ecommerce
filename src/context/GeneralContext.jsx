@@ -6,30 +6,32 @@ const useGeneralDataContext = () => useContext(GeneralDataContext);
 const GeneralContext = ({ children }) => {
   const [isLoading, setLoading] = useState(true);
 
-  const [error, setError] = useState({
+  const [notification, setNotification] = useState({
     titlte: "",
     description: "",
     type: "",
-    isActive: false
+    isActive: false,
   });
 
   const showLoader = useCallback(() => setLoading(true), []);
 
   const hideLoader = useCallback(() => setLoading(false), []);
 
-  const createError = (title, description, type) => setError({ title, description, type, isActive: true });
-  
-  const removeError = () => setError({ ...error, isActive: false });
+  const createNotification = (title, description, type) =>
+    setNotification({ title, description, type, isActive: true });
+
+  const removeNotification = () =>
+    setNotification({ ...notification, isActive: false });
 
   return (
     <GeneralDataContext.Provider
       value={{
         isLoading,
-        error,
+        notification,
         showLoader,
         hideLoader,
-        createError,
-        removeError
+        createNotification,
+        removeNotification,
       }}
     >
       {children}

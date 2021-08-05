@@ -4,11 +4,11 @@ import { useGeneralDataContext } from "../../context/GeneralContext";
 
 const WithNotification = (Component) => {
   return function ComponentWithLoader(props) {
-    const { error } = useGeneralDataContext();
+    const { notification } = useGeneralDataContext();
     return (
       <>
-        {error.isActive ? (
-          <Notification {...error} />
+        {notification.isActive ? (
+          <Notification {...notification} />
         ) : (
           <Component {...props} />
         )}
