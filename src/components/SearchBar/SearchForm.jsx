@@ -16,8 +16,8 @@ const SearchForm = ({ list, submitHandler }) => {
             required
           />
           <datalist id="products">
-            {list.map((item) => (
-              <option key={item.id}>{item.title}</option>
+            {list.map(({ id, title }) => (
+              <option key={id}>{title}</option>
             ))}
           </datalist>
         </div>

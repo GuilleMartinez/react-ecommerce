@@ -4,14 +4,14 @@ import { NavLink } from "react-router-dom";
 const NavbarCategories = ({ categories }) => {
   return (
     <>
-      {categories.map((category) => (
-        <li key={category.id} className="navbar-item is-hoverable">
+      {categories.map(({ id, title }) => (
+        <li key={id} className="navbar-item is-hoverable">
           <NavLink
-            to={`/category/${category.title}`}
+            to={`/category/${title}`}
             className="navbar-link is-arrowless has-text-white"
             activeClassName="has-background-black-ter"
           >
-            {category.title}
+            {title}
           </NavLink>
         </li>
       ))}

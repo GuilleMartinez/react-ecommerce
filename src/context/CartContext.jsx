@@ -13,7 +13,9 @@ const CartContext = ({ children }) => {
   };
 
   const updateCart = (newCart) => {
-    const sortedItems = newCart.sort((a, b) => a.product.id > b.product.id ? 1 : -1);
+    const sortedItems = newCart.sort((a, b) =>
+      a.product.id > b.product.id ? 1 : -1
+    );
     setCart(sortedItems);
     sessionStorage.setItem("react-cart", JSON.stringify(sortedItems));
   };
@@ -45,15 +47,19 @@ const CartContext = ({ children }) => {
   const clearCart = () => {
     setCart([]);
     sessionStorage.removeItem("react-cart");
-  }
+  };
 
-  const hasItemsInCart = () => cart.length > 0
+  const hasItemsInCart = () => cart.length > 0;
 
   const isInCart = (id) => cart.some((item) => item.product.id === id);
 
-  const calculateTotal = () => cart.reduce((current, item) => current + item.product.price * item.quantity, 0);
+  const calculateTotal = () =>
+    cart.reduce(
+      (current, item) => current + item.product.price * item.quantity,
+      0
+    );
 
-  const getItemsCount = () =>  cart.length
+  const getItemsCount = () => cart.length;
 
   useEffect(retrieveFromStorage, []);
 

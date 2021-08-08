@@ -13,7 +13,7 @@ const Cart = WithLoader(({ visibility }) => {
 
   const delayLoad = () => {
     showLoader();
-    setTimeout(() => hideLoader(hideLoader()), 700);
+    setTimeout(() => hideLoader(), 700);
   };
 
   useEffect(delayLoad, [showLoader, hideLoader]);

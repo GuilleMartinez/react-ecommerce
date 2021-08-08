@@ -19,9 +19,17 @@ const SearchBarContainer = WithNotification(({ items }) => {
   const submitHandler = (event) => {
     event.preventDefault();
     const searchedProduct = event.target["search-products"].value;
-    const { id } = items.find((item) => item.title.toLowerCase() === searchedProduct.toLowerCase()) || false;
+    const { id } =
+      items.find(
+        (item) => item.title.toLowerCase() === searchedProduct.toLowerCase()
+      ) || false;
     if (id) executeForm(id);
-    else createNotification("Product not found 🔍", "The product you searched is not available. Please try again", "info");
+    else
+      createNotification(
+        "Product not found 🔍",
+        "The product you searched is not available. Please try again",
+        "info"
+      );
   };
 
   return (
@@ -30,10 +38,7 @@ const SearchBarContainer = WithNotification(({ items }) => {
       {hasSubmitted ? (
         <Redirect to={`/product/${productSearched}`} />
       ) : (
-        <SearchForm
-          list={items}
-          submitHandler={submitHandler}
-        />
+        <SearchForm list={items} submitHandler={submitHandler} />
       )}
     </div>
   );

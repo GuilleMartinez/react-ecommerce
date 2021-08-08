@@ -50,8 +50,8 @@ const BuyForm = WithNotification(() => {
       createOrder(orderInformation, createSuccessNotification);
     };
 
-    updateProductsStock(cart).then((reponse) => {
-      if (reponse.hasErrorOnSubmit) createErrorNotification(reponse.items);
+    updateProductsStock(cart).then(({ items, hasErrorOnSubmit }) => {
+      if (hasErrorOnSubmit) createErrorNotification(items);
       else submitOrder(event.target);
     });
   };

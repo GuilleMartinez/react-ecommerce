@@ -4,30 +4,29 @@ import { useCartContext } from "../../context/CartContext";
 
 const CartTable = () => {
   const { cart, getItemsCount, calculateTotal, removeItem, clearCart } = useCartContext();
-  
-   const removeFromCart = (event) => {
+
+  const removeFromCart = (event) => {
     const productID = event.target.value;
     removeItem(productID);
   };
 
-
-  const generateRow = (item) => {
+  const generateRow = ({ product: { id, title, price }, quantity }) => {
     return (
-      <tr key={item.product.id}>
-        <td>{item.product.title}</td>
-        <td>{item.quantity}</td>
-        <td>${item.product.price}</td>
-        <td>${item.quantity * item.product.price}</td>
+      <tr key={id}>
+        <td>{title}</td>
+        <td>{quantity}</td>
+        <td>${price}</td>
+        <td>${quantity * price}</td>
         <td>
           <button
             className="button is-danger is-light mx-2"
-            value={item.product.id}
+            value={id}
             title="Delete order"
             onClick={removeFromCart}
           >
             Delete
           </button>
-          <Link to={`/product/${item.product.id}`}>
+          <Link to={`/product/${id}`}>
             <button
               role="link"
               className="button is-warning is-light"
