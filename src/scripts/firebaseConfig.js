@@ -86,7 +86,7 @@ async function updateProductsStock(cart) {
                 product: { id: productId },
             } = cart[index];
 
-            if (databaseStock > cartItemQuantity)
+            if (databaseStock >= cartItemQuantity)
                 batch.update(doc.ref, { stock: databaseStock - cartItemQuantity });
             else itemsOutOfStock.push(productId);
         });
