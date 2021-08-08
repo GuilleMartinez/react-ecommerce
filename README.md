@@ -2,8 +2,18 @@
 
 ## Acerca de este proyecto
 
-Este proyecto está conformado por los distintos desafíos entregables, con el objetivo de poner en práctica
-todos los conocimientos adquiridos a lo largo del curso.
+E-commerce conformado por los distintos desafíos realizados a lo largo del curso. <br>
+El objetivo de este proyecto es servir de plantilla, brindando todas las funciones básicas que tiene un sitio o aplicación de sus características que luego se puedan personalizar (tanto en diseño o extras) según las necesidades del cliente. Por esta razón, se hizo énfasis en la correcta ejecución de cada una de las funcionalidades que ofrece, agregando principios de accesibilidad para crear una aplicación que cualquier persona pueda utilizar.
+
+<figure align="center">
+   <img 
+    alt="GIF animado donde se muestran algunas funcionalidades del proyecto"
+    with="350" 
+    height="350" 
+    src="https://media.giphy.com/media/ywLGd80SUTyz3hz1k2/giphy.gif" 
+  />
+  <figcaption>GIF animado donde se muestran algunas funcionalidades que ofrece</figcaption>
+</figure>
 
 <hr>
 
@@ -11,6 +21,7 @@ todos los conocimientos adquiridos a lo largo del curso.
 
 Para la elaboración de este proyecto se utilizaron las siguientes herramientas:
 
+- React JS (librería principal)
 - Bulma CSS (estilos y diseño responsive).
 - React Router Dom (navegación).
 - Firebase (alojamiento de datos).
@@ -19,17 +30,12 @@ Para la elaboración de este proyecto se utilizaron las siguientes herramientas:
 
 ## Instalación del proyecto
 
-En primer lugar, debe clonar el repositorio utlizando el siguiente comando:
+1. Debe clonar el repositorio utlizando _`git clone https://github.com/GuilleMartinez/react-ecommerce.git`_
+2. Luego deberá instalar todas las dependencias del proyecto, para eso deberá ejecutar
+   _`npm install` (también puede utilizar `npm i`)_
+3. Por último, puede ejecutar el proyecto y realizar las pruebas utilizando _`npm start`_
 
-### `git clone https://github.com/GuilleMartinez/react-ecommerce.git`
-
-Luego deberá instalar todas las dependencias del proyecto, para eso deberá ejecutar:
-
-### `npm install` (también puede utilizar `npm i`)
-
-Por último, puede ejecutar el proyecto y realizar las pruebas utilizando:
-
-### `npm start`
+_Si no desea instalar el proyecto, puede utilizarlo ingresando al siguiente enlace: [Proyecto en vivo](https://react-ecommerce-guillermo-martinez.netlify.app/)_
 
 <hr>
 
