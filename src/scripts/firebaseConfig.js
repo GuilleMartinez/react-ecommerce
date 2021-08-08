@@ -17,14 +17,14 @@ const createDocsArray = (docs) => docs.map((doc) => createFirebaseObject(doc));
 
 const createFirebaseObject = (doc) => ({ id: doc.id, ...doc.data() });
 
+const db = firebase.firestore(app);
+
 function requestProducts(
     onResponse = () => { },
     onFinally = () => { },
     hasFilter = false,
     categoryName = ""
 ) {
-    const db = firebase.firestore(app);
-
     const productsCollection = hasFilter
         ? db.collection("products").where("category", "==", categoryName)
         : db.collection("products");
@@ -37,8 +37,6 @@ function requestProducts(
 }
 
 function requestCategories(onResponse = () => { }, onFinally = () => { }) {
-    const db = firebase.firestore(app);
-
     const categoriesCollection = db.collection("categories");
 
     categoriesCollection
@@ -53,8 +51,6 @@ function requestProduct(
     onFinally = () => { },
     productID = ""
 ) {
-    const db = firebase.firestore(app);
-
     const productSearched = db.collection("products").doc(productID);
 
     productSearched
@@ -64,4 +60,59 @@ function requestProduct(
         .finally(onFinally);
 }
 
-export { requestCategories, requestProducts, requestProduct };
+function createOrder(order, onResponse) {
+    const orders = db.collection("orders");
+    orders
+        .add(order)
+        .then(({ id }) => onResponse(id))
+        .catch((error) => console.log(error));
+}
+
+async function updateProductsStock(cart) {
+    const firebaseProducts = db.collection("products").where(
+        firebase.firestore.FieldPath.documentId(),
+        "in",
+        cart.map((item) => item.product.id)
+    );
+
+    const batch = db.batch();
+    const itemsOutOfStock = [];
+
+    function updateDocs(docs) {
+        docs.forEach((doc, index) => {
+            const { stock: databaseStock } = doc.data();
+            const {
+                quantity: cartItemQuantity,
+                product: { id: productId },
+            } = cart[index];
+
+            if (databaseStock > cartItemQuantity)
+                batch.update(doc.ref, { stock: databaseStock - cartItemQuantity });
+            else itemsOutOfStock.push(productId);
+        });
+    }
+
+    const query = await firebaseProducts.get();
+    updateDocs(query.docs);
+
+    if (itemsOutOfStock.length === 0) {
+        batch.commit();
+        return {
+            items: [],
+            hasErrorOnSubmit: false,
+        };
+    } else {
+        return {
+            items: cart.filter((item) => !itemsOutOfStock.includes(item.product.id)),
+            hasErrorOnSubmit: true,
+        };
+    }
+}
+
+export {
+    requestCategories,
+    requestProducts,
+    requestProduct,
+    createOrder,
+    updateProductsStock,
+};

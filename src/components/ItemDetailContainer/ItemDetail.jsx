@@ -11,7 +11,7 @@ const ItemDetail = ({ item }) => {
   const updateFinish = () => setFinish(!hasFinish);
 
   const { addItem } = useCartContext();
-  const clickHanlder = () => {
+  const clickHandler = () => {
     const newItem = { product: { ...item }, quantity: count };
     addItem(newItem);
   };
@@ -46,7 +46,7 @@ const ItemDetail = ({ item }) => {
                   role="link"
                   className="button is-dark"
                   title="Add to cart"
-                  onClick={clickHanlder}
+                  onClick={clickHandler}
                 >
                   Add to cart
                 </button>

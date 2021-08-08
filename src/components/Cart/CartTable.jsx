@@ -27,7 +27,7 @@ const CartTable = () => {
           >
             Delete
           </button>
-          <Link to={`/product/${item.product.title}`}>
+          <Link to={`/product/${item.product.id}`}>
             <button
               role="link"
               className="button is-warning is-light"

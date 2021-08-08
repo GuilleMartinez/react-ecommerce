@@ -11,14 +11,26 @@ const GeneralContext = ({ children }) => {
     description: "",
     type: "",
     isActive: false,
+    closeAction: null,
   });
 
   const showLoader = useCallback(() => setLoading(true), []);
 
   const hideLoader = useCallback(() => setLoading(false), []);
 
-  const createNotification = (title, description, type) =>
-    setNotification({ title, description, type, isActive: true });
+  const createNotification = (
+    title,
+    description,
+    type,
+    closeAction = () => {}
+  ) =>
+    setNotification({
+      title,
+      description,
+      type,
+      isActive: true,
+      closeAction,
+    });
 
   const removeNotification = () =>
     setNotification({ ...notification, isActive: false });

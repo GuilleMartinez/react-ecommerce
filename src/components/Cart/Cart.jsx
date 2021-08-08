@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import WithLoader from "../HOC/WithLoader";
 import CartTable from "./CartTable";
 import CartEmpty from "./CartEmpty";
+import BuyForm from "../BuyForm/BuyForm";
 import { useCartContext } from "../../context/CartContext";
 import { useGeneralDataContext } from "../../context/GeneralContext";
 import "./Cart.css";
@@ -19,7 +20,14 @@ const Cart = WithLoader(({ visibility }) => {
 
   return (
     <div className={`container is-max-desktop p-4 ${visibility}`}>
-      {hasItemsInCart() ? <CartTable /> : <CartEmpty />}
+      {hasItemsInCart() ? (
+        <>
+          <CartTable />
+          <BuyForm />
+        </>
+      ) : (
+        <CartEmpty />
+      )}
     </div>
   );
 });

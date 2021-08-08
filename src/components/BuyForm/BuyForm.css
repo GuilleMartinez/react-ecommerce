@@ -1,0 +1,15 @@
+input:invalid + .help {
+  color: hsl(348, 86%, 43%);
+}
+
+.input:valid {
+  border-color: hsl(141, 53%, 31%);
+}
+
+.input:valid + .help {
+  color: hsl(141, 53%, 31%);
+}
+
+.input:valid + .help::after {
+  content: " ✔ ";
+}

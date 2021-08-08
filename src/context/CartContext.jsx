@@ -12,9 +12,10 @@ const CartContext = ({ children }) => {
     if (savedCart && savedCart.length > 0) setCart(savedCart);
   };
 
-  const updateCart = (newState) => {
-    setCart(newState);
-    sessionStorage.setItem("react-cart", JSON.stringify(newState));
+  const updateCart = (newCart) => {
+    const sortedItems = newCart.sort((a, b) => a.product.id > b.product.id ? 1 : -1);
+    setCart(sortedItems);
+    sessionStorage.setItem("react-cart", JSON.stringify(sortedItems));
   };
 
   const addItem = (newItem) => {
@@ -62,6 +63,7 @@ const CartContext = ({ children }) => {
         cart,
         addItem,
         removeItem,
+        updateCart,
         getItemsCount,
         hasItemsInCart,
         calculateTotal,

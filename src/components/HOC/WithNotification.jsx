@@ -6,13 +6,7 @@ const WithNotification = (Component) => {
   return function ComponentWithLoader(props) {
     const { notification } = useGeneralDataContext();
     return (
-      <>
-        {notification.isActive ? (
-          <Notification {...notification} />
-        ) : (
-          <Component {...props} />
-        )}
-      </>
+      <>{notification.isActive ? <Notification /> : <Component {...props} />}</>
     );
   };
 };

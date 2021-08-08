@@ -1,4 +1,4 @@
-import React, { createRef, useState } from "react";
+import React, { useState } from "react";
 import WithNotification from "../HOC/WithNotification";
 import SearchForm from "./SearchForm";
 import { Redirect } from "react-router-dom";
@@ -8,7 +8,6 @@ const SearchBarContainer = WithNotification(({ items }) => {
   const [productSearched, setProductSearched] = useState(null);
 
   const [hasSubmitted, setSubmit] = useState(false);
-  const searchRef = createRef();
 
   const { createNotification } = useGeneralDataContext();
 
@@ -17,20 +16,12 @@ const SearchBarContainer = WithNotification(({ items }) => {
     setSubmit(true);
   };
 
-  const onSubmitHanlder = (event) => {
+  const submitHandler = (event) => {
     event.preventDefault();
-    const searchedProduct = searchRef.current.value;
-    const { id } =
-      items.find(
-        (item) => item.title.toLowerCase() === searchedProduct.toLowerCase()
-      ) || false;
+    const searchedProduct = event.target["search-products"].value;
+    const { id } = items.find((item) => item.title.toLowerCase() === searchedProduct.toLowerCase()) || false;
     if (id) executeForm(id);
-    else
-      createNotification(
-        "Product not found",
-        "The product you searched is not available. Please try again",
-        "info"
-      );
+    else createNotification("Product not found 🔍", "The product you searched is not available. Please try again", "info");
   };
 
   return (
@@ -41,8 +32,7 @@ const SearchBarContainer = WithNotification(({ items }) => {
       ) : (
         <SearchForm
           list={items}
-          submitHanlder={onSubmitHanlder}
-          inputReference={searchRef}
+          submitHandler={submitHandler}
         />
       )}
     </div>
