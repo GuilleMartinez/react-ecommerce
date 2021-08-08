@@ -6,23 +6,25 @@ const ItemCount = ({ stock, count, onAdd }) => {
       <button
         className="level-item button is-info is-normal m-0"
         type="button"
-        value={1}
-        disabled={count >= stock}
+        value={-1}
+        disabled={count <= 1}
         onClick={onAdd}
-        title="Increment count"
+        title="Decrement Count"
+        aria-label="Decrement Count"
       >
-        +
+        -
       </button>
       <small className="level-item tag is-white is-large m-0">{count}</small>
       <button
         className="level-item button is-info is-normal m-0"
         type="button"
-        value={-1}
-        disabled={count <= 0}
+        value={1}
+        disabled={count >= stock}
         onClick={onAdd}
-        title="Decrement Count"
+        title="Increment count"
+        aria-label="Increment count"
       >
-        -
+        +
       </button>
     </div>
   );

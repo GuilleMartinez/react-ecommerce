@@ -62,7 +62,6 @@ const ItemDetail = ({ item }) => {
               className={`button ${
                 hasFinish ? "is-warning" : "is-success"
               } is-light`}
-              disabled={count <= 0}
               onClick={updateFinish}
               title={hasFinish ? "Update your order" : "Confirm your order"}
             >
