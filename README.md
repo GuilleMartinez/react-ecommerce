@@ -5,7 +5,7 @@
 E-commerce conformado por los distintos desafíos realizados a lo largo del curso. <br>
 El objetivo de este proyecto es servir de plantilla, brindando todas las funciones básicas que tiene un sitio o aplicación de sus características que luego se puedan personalizar (tanto en diseño o extras) según las necesidades del cliente. Por esta razón, se hizo énfasis en la correcta ejecución de cada una de las funcionalidades que ofrece, agregando principios de accesibilidad para crear una aplicación que cualquier persona pueda utilizar.
 
-<figure align="center">
+<figure style="text-align: center">
    <img 
     alt="GIF animado donde se muestran algunas funcionalidades del proyecto"
     with="350" 
@@ -61,7 +61,7 @@ _Si no desea instalar el proyecto, puede utilizarlo ingresando al siguiente enla
 
 ### Carrito de compras
 
-- Muestra un resumen de la compra a realizar junto al formulario para finalizar su compra.
+- Muestra un resumen de la compra a realizar junto al formulario para finalizar la transacción.
 - Puede eliminar un producto en específico o bien vaciar el carrito por completo.
 - Todos los datos ingresados en el formualrio serán validados previamente a enviar su pedido.
 - Una vez finalizada su compra, será notificado sobre el estado de la operación.
